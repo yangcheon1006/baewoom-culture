@@ -3,52 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>배움문화팀 프로그램 안내</title>
+<title>양천해누리복지관 배움문화팀 프로그램 안내</title>
+<meta name="description" content="양천해누리복지관 배움문화팀 프로그램 모집 및 이용 안내">
 <style>
-body{font-family:Arial,sans-serif;background:#f5f7fb;margin:0;color:#222}
-header{background:#0f766e;color:#fff;padding:28px 20px}
-main{max-width:720px;margin:0 auto;padding:20px}
-.card{background:#fff;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#dcfce7;color:#166534;font-size:12px;font-weight:bold}
-.grid{display:grid;gap:12px}
-.row{display:flex;justify-content:space-between;margin:6px 0}
-footer{text-align:center;color:#666;padding:30px 10px;font-size:13px}
+:root{
+  --bg:#f7f8fc; --card:#ffffff; --text:#1f2937; --muted:#667085;
+  --line:#e4e7ec; --brand:#6f49d8; --brand-dark:#5432b5; --soft:#f2edff;
+  --ok:#157a55; --okbg:#ecfdf3; --warn:#9a5b00; --warnbg:#fff7e6;
+  --danger:#b42318; --dangerbg:#fff1f0; --blue:#175cd3; --bluebg:#eff8ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{color:inherit}
+.hero{background:linear-gradient(135deg,var(--brand-dark),var(--brand));color:#fff;padding:34px 18px 44px}
+.hero-inner{max-width:1100px;margin:auto}
+.brandline{font-weight:700;font-size:14px;opacity:.92}
+h1{font-size:30px;line-height:1.25;margin:8px 0 8px}
+.hero p{margin:0;font-size:16px;opacity:.95}
+.wrap{max-width:1100px;margin:-24px auto 0;padding:0 18px 50px}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.summary .box{background:#fff;border:1px solid rgba(0,0,0,.04);border-radius:16px;padding:18px;box-shadow:0 10px 28px rgba(31,41,55,.08)}
+.summary span{font-size:13px;color:var(--muted)}
+.summary b{font-size:26px;display:block;margin-top:3px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:18px 0}
+.searchrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.searchrow input{flex:1;min-width:240px;border:1px solid #cfd4dc;border-radius:12px;padding:14px 15px;font-size:16px}
+.smallbtn{border:1px solid #d0d5dd;background:#fff;border-radius:10px;padding:12px 13px;cursor:pointer}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{border:1px solid #d8dce5;background:#fff;border-radius:999px;padding:9px 13px;cursor:pointer;font-size:14px}
+.chip.active{background:var(--soft);border-color:#c8b7f7;color:var(--brand-dark);font-weight:800}
+.notice{margin-top:12px;background:#fafafa;border-radius:12px;padding:11px 13px;color:#475467;font-size:13px;line-height:1.55}
+.title-row{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:25px 0 12px}
+.title-row h2{margin:0;font-size:22px}
+.count{font-size:14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:0 4px 14px rgba(31,41,55,.04)}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.category{display:inline-block;background:var(--soft);color:var(--brand-dark);font-size:12px;font-weight:800;border-radius:999px;padding:5px 8px;margin-bottom:8px}
+.card h3{margin:0;font-size:20px}
+.status{font-size:13px;font-weight:800;border-radius:999px;padding:7px 9px;white-space:nowrap}
+.open{background:var(--okbg);color:var(--ok)}
+.always{background:var(--bluebg);color:var(--blue)}
+.soon{background:var(--warnbg);color:var(--warn)}
+.closed{background:var(--dangerbg);color:var(--danger)}
+.info{margin-top:14px;display:grid;gap:8px;font-size:14px}
+.row{display:grid;grid-template-columns:80px 1fr;gap:8px}
+.label{color:var(--muted)}
+.capacity{margin-top:14px;background:#f8fafc;border-radius:12px;padding:12px}
+.capline{display:flex;justify-content:space-between;font-size:13px}
+.bar{height:8px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:8px}
+.fill{height:100%;background:linear-gradient(90deg,var(--brand-dark),var(--brand))}
+.remain{margin-top:7px;font-size:13px;font-weight:800;color:#475467}
+.actions{display:flex;gap:8px;margin-top:15px}
+.btn{flex:1;text-align:center;text-decoration:none;padding:11px 12px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;border:0}
+.btn.primary{background:var(--brand);color:#fff}
+.btn.secondary{background:#fff;border:1px solid #d0d5dd;color:#344054}
+.empty{grid-column:1/-1;background:#fff;border:1px dashed #cfd4dc;border-radius:16px;padding:36px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+.modal.show{display:flex}
+.modal-card{width:min(560px,100%);background:#fff;border-radius:18px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.modal-head{display:flex;justify-content:space-between;gap:10px}
+.modal-head h3{margin:0}
+.close{border:0;background:#f2f4f7;border-radius:10px;width:36px;height:36px;cursor:pointer}
+.detail-grid{display:grid;gap:10px;margin-top:16px;font-size:14px}
+.detail-row{display:grid;grid-template-columns:90px 1fr;gap:10px}
+.admin{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.admin h2{margin:0 0 8px;font-size:19px}
+.admin p{font-size:13px;color:#667085;line-height:1.6;margin:0 0 12px}
+.admin textarea{width:100%;min-height:190px;border:1px solid #d0d5dd;border-radius:12px;padding:12px;font-family:monospace;font-size:12px}
+.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+footer{margin-top:28px;padding:22px 0;border-top:1px solid var(--line);font-size:13px;color:#667085;line-height:1.7}
+@media(max-width:720px){
+  h1{font-size:25px}.summary{grid-template-columns:1fr}.grid{grid-template-columns:1fr}
+  .row,.detail-row{grid-template-columns:70px 1fr}.actions{flex-direction:column}
+}
 </style>
 </head>
 <body>
-<header>
-  <h1>배움문화팀 프로그램 안내</h1>
-  <p>양천해누리복지관 · 시범운영</p>
-</header>
-<main>
-  <div class="card">
-    <h2>시범운영 안내</h2>
-    <p>이 페이지는 개인 블로그 테스트용입니다. 프로그램 정보는 배움문화팀 최신 운영자료를 기준으로 순차 업데이트됩니다.</p>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="brandline">양천해누리복지관 · 배움문화팀</div>
+    <h1>배움문화팀 프로그램 안내</h1>
+    <p>현재 신청 가능한 프로그램과 이용 정보를 한눈에 확인하세요.</p>
   </div>
-  <div class="grid">
-    <div class="card">
-      <span class="badge">모집중</span>
-      <h3>원예교실</h3>
-      <div class="row"><b>대상</b><span>성인</span></div>
-      <div class="row"><b>일정</b><span>매주 화요일</span></div>
-      <div class="row"><b>문의</b><span>070-4804-6052</span></div>
+</section>
+
+<main class="wrap">
+  <section class="summary">
+    <div class="box"><span>전체 프로그램</span><b id="totalCount">0</b></div>
+    <div class="box"><span>현재 모집중·상시</span><b id="openCount">0</b></div>
+    <div class="box"><span>현재 남은 자리</span><b id="remainCount">0</b></div>
+  </section>
+
+  <section class="panel">
+    <div class="searchrow">
+      <input id="searchInput" type="search" placeholder="프로그램명, 대상, 분야를 검색하세요">
+      <button class="smallbtn" onclick="resetFilters()">초기화</button>
     </div>
-    <div class="card">
-      <span class="badge">운영중</span>
-      <h3>해누리합창단</h3>
-      <div class="row"><b>일정</b><span>매주 목 10:00</span></div>
-      <div class="row"><b>장소</b><span>강당</span></div>
-      <div class="row"><b>문의</b><span>070-4804-6050</span></div>
+    <div class="chips" id="chips"></div>
+    <div class="notice">
+      모집상태와 신청인원은 담당자 확인 후 수시 반영됩니다. 실제 신청 가능 여부는 프로그램별 문의전화로 최종 확인해 주세요.
     </div>
-    <div class="card">
-      <span class="badge">모집예정</span>
-      <h3>테마여행</h3>
-      <div class="row"><b>신청</b><span>10/1 ~ 10/8</span></div>
-      <div class="row"><b>운영</b><span>10/21</span></div>
-      <div class="row"><b>문의</b><span>070-4804-6053</span></div>
-    </div>
+  </section>
+
+  <div class="title-row">
+    <h2>프로그램 둘러보기</h2>
+    <div class="count" id="resultCount"></div>
   </div>
+
+  <section class="grid" id="programGrid"></section>
+
+  
+
+  <footer>
+    양천해누리복지관 배움문화팀 프로그램 안내<br>
+    프로그램별 모집상태와 일정은 운영 상황에 따라 변경될 수 있으며, 자세한 사항은 담당자에게 문의해 주세요.
+  </footer>
 </main>
-<footer>© 양천해누리복지관 배움문화팀</footer>
+
+<div class="modal" id="detailModal" onclick="if(event.target===this) closeModal()">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <button class="close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="detail-grid" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const originalPrograms = [
+  {
+    name:"해누리합창단", category:"문화·여가",
+    target:"성인 장애인 및 보호자, 지역주민",
+    schedule:"매주 목요일 10:00~12:00",
+    place:"양천해누리복지관 지하 2층 강당",
+    fee:"무료", capacity:30, current:24, status:"상시",
+    phone:"070-4840-6050", apply:"전화 및 방문 신청",
+    note:"합창 활동을 통한 문화·여가 및 참여자 교류 활동"
+  },
+  {
+    name:"하모니카교실", category:"문화·여가",
+    target:"성인 장애인 및 지역주민",
+    schedule:"매주 수요일 10:00~11:30",
+    place:"양천해누리복지관 프로그램실",
+    fee:"문의", capacity:15, current:12, status:"상시",
+    phone:"070-4840-6050", apply:"전화 및 방문 신청",
+    note:"하모니카 연주를 통한 문화·여가 활동"
+  },
+  {
+    name:"열린탁구", category:"건강·체육",
+    target:"성인 장애인 및 지역주민",
+    schedule:"매주 목·금요일 09:30~17:00",
+    place:"양천해누리복지관 지하 2층 열린교육실",
+    fee:"문의", capacity:20, current:14, status:"상시",
+    phone:"070-4840-6050", apply:"전화 및 방문 신청",
+    note:"자유롭게 이용하는 생활체육 프로그램"
+  },
+  {
+    name:"누리주방", category:"요리·생활",
+    target:"성인 장애인",
+    schedule:"2026년 9~12월 월 2회, 화요일 14:00~16:00",
+    place:"중앙요리학원",
+    fee:"프로그램 안내에 따름", capacity:8, current:7, status:"모집중",
+    phone:"070-4840-6050", apply:"전화 및 방문 신청",
+    note:"요리활동을 통한 생활기술 및 자립생활 지원"
+  },
+  {
+    name:"누리제과", category:"요리·생활",
+    target:"성인 장애인",
+    schedule:"월 2회 금요일 14:00~16:00",
+    place:"중앙요리학원",
+    fee:"월 30,000원", capacity:10, current:10, status:"마감",
+    phone:"070-4840-6050", apply:"전화 및 방문 신청",
+    note:"제과·베이킹 실습 프로그램"
+  },
+  {
+    name:"전통발효클래스", category:"요리·생활",
+    target:"성인 장애인 및 지역주민",
+    schedule:"월 1회 14:00~16:00",
+    place:"양천해누리복지관 프로그램실",
+    fee:"회기별 안내", capacity:15, current:11, status:"모집중",
+    phone:"070-4840-6050", apply:"전화 및 방문 신청",
+    note:"전통음식과 발효 식문화를 체험하는 프로그램"
+  },
+  {
+    name:"찾아가는 청춘극장", category:"문화·여가",
+    target:"장애인 및 지역주민",
+    schedule:"2026년 9~11월 월 2회 수요일 13:00",
+    place:"양천해누리복지관 지하 2층 강당",
+    fee:"무료", capacity:80, current:0, status:"상시",
+    phone:"070-4840-6053", apply:"사전신청 없이 당일 방문",
+    note:"정기 영화 상영 프로그램"
+  },
+  {
+    name:"테마여행", category:"행사·체험",
+    target:"장애인 및 보호자, 지역주민",
+    schedule:"2026.10.21.(수) 09:00~18:00",
+    place:"경기도 일대 예정",
+    fee:"추후 안내", capacity:30, current:0, status:"모집예정",
+    phone:"070-4840-6053", apply:"2026.10.1.~10.8. 전화 및 방문 신청",
+    note:"지역 명소·문화시설·관광지 방문 및 체험활동"
+  }
+];
+
+let programs = JSON.parse(JSON.stringify(originalPrograms));
+let active = "전체";
+const categories = ["전체","모집중만","문화·여가","요리·생활","건강·체육","행사·체험"];
+
+function isOpen(p){return p.status==="모집중" || p.status==="상시"}
+function statusClass(s){
+  return s==="모집중"?"open":s==="마감"?"closed":s==="모집예정"?"soon":"always";
+}
+function statusText(s){return s==="상시"?"상시 이용/모집":s}
+function remain(p){return Math.max((p.capacity||0)-(p.current||0),0)}
+
+function renderChips(){
+  const el=document.getElementById("chips"); el.innerHTML="";
+  categories.forEach(c=>{
+    const b=document.createElement("button");
+    b.className="chip"+(active===c?" active":"");
+    b.textContent=c;
+    b.onclick=()=>{active=c; renderChips(); renderPrograms();};
+    el.appendChild(b);
+  })
+}
+function renderPrograms(){
+  const q=document.getElementById("searchInput").value.trim().toLowerCase();
+  const filtered=programs.filter(p=>{
+    const ok=active==="전체"?true:active==="모집중만"?isOpen(p):p.category===active;
+    const hay=[p.name,p.category,p.target,p.schedule,p.place,p.note].join(" ").toLowerCase();
+    return ok && (!q || hay.includes(q));
+  });
+  document.getElementById("resultCount").textContent=`${filtered.length}개 프로그램`;
+  const grid=document.getElementById("programGrid"); grid.innerHTML="";
+  if(!filtered.length){
+    grid.innerHTML='<div class="empty">조건에 맞는 프로그램이 없습니다.</div>'; return;
+  }
+  filtered.forEach((p)=>{
+    const pct=p.capacity?Math.min(Math.round((p.current||0)/p.capacity*100),100):0;
+    const art=document.createElement("article"); art.className="card";
+    art.innerHTML=`
+      <div class="top">
+        <div><span class="category">${p.category}</span><h3>${p.name}</h3></div>
+        <div class="status ${statusClass(p.status)}">${statusText(p.status)}</div>
+      </div>
+      <div class="info">
+        <div class="row"><div class="label">대상</div><div>${p.target}</div></div>
+        <div class="row"><div class="label">일정</div><div>${p.schedule}</div></div>
+        <div class="row"><div class="label">장소</div><div>${p.place}</div></div>
+        <div class="row"><div class="label">이용료</div><div>${p.fee}</div></div>
+      </div>
+      ${p.capacity?`
+      <div class="capacity">
+        <div class="capline"><span>신청 현황</span><strong>${p.current} / ${p.capacity}명</strong></div>
+        <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+        <div class="remain">${p.status==="마감"?"현재 모집이 마감되었습니다.":`남은 자리 ${remain(p)}명`}</div>
+      </div>`:""}
+      <div class="actions">
+        <a class="btn secondary" href="tel:${p.phone.replaceAll("-","")}">전화 문의</a>
+        <button class="btn primary" onclick='openModal(${JSON.stringify(p).replace(/'/g,"&#39;")})'>자세히 보기</button>
+      </div>`;
+    grid.appendChild(art);
+  });
+  updateStats();
+}
+function updateStats(){
+  document.getElementById("totalCount").textContent=programs.length;
+  document.getElementById("openCount").textContent=programs.filter(isOpen).length;
+  document.getElementById("remainCount").textContent=programs.filter(isOpen).reduce((s,p)=>s+remain(p),0);
+}
+function openModal(p){
+  document.getElementById("modalTitle").textContent=p.name;
+  document.getElementById("modalBody").innerHTML=`
+    <div class="detail-row"><div class="label">모집상태</div><div>${statusText(p.status)}</div></div>
+    <div class="detail-row"><div class="label">대상</div><div>${p.target}</div></div>
+    <div class="detail-row"><div class="label">일정</div><div>${p.schedule}</div></div>
+    <div class="detail-row"><div class="label">장소</div><div>${p.place}</div></div>
+    <div class="detail-row"><div class="label">이용료</div><div>${p.fee}</div></div>
+    <div class="detail-row"><div class="label">신청방법</div><div>${p.apply}</div></div>
+    <div class="detail-row"><div class="label">문의</div><div>${p.phone}</div></div>
+    <div class="detail-row"><div class="label">내용</div><div>${p.note}</div></div>`;
+  document.getElementById("detailModal").classList.add("show");
+}
+function closeModal(){document.getElementById("detailModal").classList.remove("show")}
+function resetFilters(){
+  active="전체"; document.getElementById("searchInput").value="";
+  renderChips(); renderPrograms();
+}
+function loadEditor(){
+  document.getElementById("dataEditor").value=JSON.stringify(programs,null,2);
+}
+function applyEditor(){
+  try{
+    const next=JSON.parse(document.getElementById("dataEditor").value);
+    if(!Array.isArray(next)) throw new Error();
+    programs=next; renderPrograms(); alert("현재 화면에 적용되었습니다.");
+  }catch(e){alert("데이터 형식이 올바르지 않습니다.");}
+}
+
+document.getElementById("searchInput").addEventListener("input",renderPrograms);
+renderChips(); renderPrograms(); loadEditor();
+</script>
 </body>
 </html>
